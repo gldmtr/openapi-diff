@@ -43,7 +43,7 @@ public class PathsDiff {
               String template = normalizePath(url);
               Optional<String> result =
                   right.keySet().stream()
-                      .filter(s -> normalizePath(s).equals(template))
+                      .filter(s -> normalizePath(s).equals(template) && right.get(s).readOperations().equals(leftPath.readOperations()))
                       .findFirst();
               if (result.isPresent()) {
                 if (!changedPaths.getIncreased().containsKey(result.get())) {
